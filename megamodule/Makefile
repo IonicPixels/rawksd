@@ -25,7 +25,7 @@ LIBDIRS		:=
 #---------------------------------------------------------------------------------
 # the prefix on the compiler executables
 #---------------------------------------------------------------------------------
-PREFIX		:= $(DEVKITARM)/bin/arm-eabi-
+PREFIX		:= $(DEVKITARM)/bin/arm-none-eabi-
 CC			:= $(PREFIX)gcc
 CXX			:= $(PREFIX)g++
 AR			:= $(PREFIX)ar
@@ -46,6 +46,7 @@ export ROOT	:= $(CURDIR)
 
 all:
 	@[ -d $(BUILD) ] || mkdir -p $(BUILD)
+	@[ -d $(BIN) ] || mkdir -p $(BIN)
 	@$(MAKE) -C ../libios --no-print-directory -f Makefile
 	@$(MAKE) -C libmega --no-print-directory -f Makefile.ios
 	@$(MAKE) -C libmega --no-print-directory -f Makefile.wii

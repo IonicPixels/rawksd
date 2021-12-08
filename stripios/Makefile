@@ -1,5 +1,10 @@
-stripios.exe: stripios.cpp rijndael.cpp
-	g++ stripios.cpp rijndael.cpp -o stripios.exe
+ifeq ($(OS),Windows_NT)
+	STRIPIOS := stripios.exe
+else
+	STRIPIOS := stripios
+endif
+
+stripios: stripios.cpp rijndael.cpp
+	$(CXX) -O2 -flto -o $(STRIPIOS) stripios.cpp rijndael.cpp
 clean:
-	@echo "clean ..."
-	@rm -f stripios.exe
+	rm -f $(STRIPIOS)

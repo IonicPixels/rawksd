@@ -28,12 +28,12 @@ INCLUDES	:=	include lib/libwiigui lib \
 
 CFLAGS		=	-fdata-sections -ffunction-sections -g -O2 -Wall $(MACHDEP) $(INCLUDE)
 CXXFLAGS	=	-save-temps -Xassembler -aln=$@.lst $(CFLAGS)
-LDFLAGS		=	$(MACHDEP) -Wl,--gc-sections -Wl,-Map,$(notdir $@).map,--section-start,.init=0x80a00000 -T ../lib/rvl.ld
+LDFLAGS		=	$(MACHDEP) -Wl,--gc-sections -Wl,-Map,$(notdir $@).map,--section-start,.init=0x80a00000 -T ../lib/rvl.ld -Xlinker --defsym=__locale_ctype_ptr=_ctype_
 
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS :=	../lib/libxml++/libxml++.a ../lib/libxml2/libxml2.a -lpng -lz -lfat -lwiiuse -lbte -lasnd -logc -lvorbisidec -lfreetype ../../filemodule/libfile/libfile_wii.a ../../megamodule/libmega/libmega_wii.a
+LIBS :=	../lib/libxml++/libxml++.a ../lib/libxml2/libxml2.a -lpng -lz -lfat -lwiiuse -lbte -lasnd -logc -lvorbisidec -logg -lfreetype ../../filemodule/libfile/libfile_wii.a ../../megamodule/libmega/libmega_wii.a
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
 # include and lib
@@ -85,7 +85,8 @@ export OFILES	:=	$(CPPFILES:.cpp=.o) $(CFILES:.c=.o) \
 export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
 					-I$(CURDIR)/$(BUILD) \
-					-I$(LIBOGC_INC) -I$(PORTLIBS)/include/freetype2
+					-I$(LIBOGC_INC) \
+					$(foreach dir,$(PORTLIBS),-I$(dir)/include/freetype2)
 
 #---------------------------------------------------------------------------------
 # build a list of library paths
