@@ -21,7 +21,7 @@ using std::vector;
 //#define BABELFISH
 
 #ifndef BABELFISH
-#define printf(...)
+//#define printf(...)
 #endif
 
 #define MEM2_PROT           0x0D8B420A
@@ -169,11 +169,17 @@ int Haxx_Init()
 		IOS_ReloadwithAHB((u32)HAXX_IOS);
 
 	if (!do_exploit())
+	{
+		printf("Failed at do_exploit");
 		return -1;
+	}
 
 	usleep(4000);
 	if (load_module_code(filemodule_elf, filemodule_elf_end) <= 0)
+	{
+		printf("Failed at usleep");
 		return -1;
+	}
 
 	printf("Riiv filemodule loaded\n");
 
