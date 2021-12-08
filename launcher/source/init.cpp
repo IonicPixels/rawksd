@@ -178,7 +178,7 @@ void Initialise()
 			approach = INSTALL_APPROACH_DOWNGRADE;
 		} else {
 			// Proper version, but a patch failed. RawkSD patcher or DOP-IOS or something.
-			printf("\tIOS%d must be reinstalled to continue.\n\tThis is a perfectly safe to do; do you want to reinstall it now?\n", (u32)HAXX_IOS);
+			printf("\tIOS%d must be reinstalled to continue.\n\tThis is a perfectly safe proccess to do.\n\t do you want to reinstall it now?\n", (u32)HAXX_IOS);
 			if (!PressA())
 				exit(0);
 			approach = INSTALL_APPROACH_UPDATE;
@@ -207,7 +207,7 @@ void Initialise()
 			WPAD_Shutdown();
 			if (Haxx_Init()<0) {
 				WPAD_Init();
-				printf("\tSomething still seems to be wrong; I'm getting outta here!\n");
+				printf("\tSomething still seems to be wrong. I'm getting outta here!\n");
 				PressHome();
 				exit(0);
 			}
