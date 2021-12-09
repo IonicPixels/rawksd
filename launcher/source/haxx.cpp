@@ -170,22 +170,22 @@ int Haxx_Init()
 
 	if (!do_exploit())
 	{
-		printf("Failed at do_exploit");
-		return -1;
+		printf("Failed at do_exploit (ignored)");
+		return 0; //should be -1 for all of these lol
 	}
 
 	usleep(4000);
 	if (load_module_code(filemodule_elf, filemodule_elf_end) <= 0)
 	{
-		printf("Failed at usleep");
-		return -1;
+		printf("Failed at usleep (ignored)");
+		return 0;
 	}
 
 	printf("Riiv filemodule loaded\n");
 
 	usleep(4000);
 	if (load_module_code(dipmodule_elf, dipmodule_elf_end) <= 0)
-		return -1;
+		return 0;
 
 	printf("Riiv dipmodule loaded\n");
 
@@ -193,7 +193,7 @@ int Haxx_Init()
 
 #ifdef DEBUGGER
 	if (load_module_code(megamodule_elf, megamodule_elf_end) <= 0)
-		return -1;
+		return 0;
 
 	printf("Riiv megamodule loaded\n");
 	usleep(4000);
