@@ -159,7 +159,7 @@ void Initialise()
 		if (is_wiiu) {
 			printf("IOS Error. Please try relaunching this program from HBC.\n");
 			PressHome();
-			exit(0);
+			exit(0); //WHY? this literally makes Riivolution incompatible on the Wii U for some stupid reason. and no, loading from HBC will not help.
 		} else if (IOS_GetVersion() != (u32)HAXX_IOS) {
 			printf("\tIOS%d does not seem to be installed on your system.\n\tIt's perfectly safe to install it; do you want to do so now?\n", (u32)HAXX_IOS);
 			if (!PressA())

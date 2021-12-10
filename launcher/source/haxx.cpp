@@ -168,24 +168,24 @@ int Haxx_Init()
 	if (IOS_GetVersion() != (u32)HAXX_IOS)
 		IOS_ReloadwithAHB((u32)HAXX_IOS);
 
-	if (!do_exploit())
+	if (!do_exploit()) //this is the major error and why the UI will not load
 	{
-		printf("Failed at do_exploit (ignored)");
-		return 0; //should be -1 for all of these lol
+		printf("Failed at do_exploit");
+		return 0;
 	}
 
 	usleep(4000);
 	if (load_module_code(filemodule_elf, filemodule_elf_end) <= 0)
 	{
-		printf("Failed at usleep (ignored)");
-		return 0;
+		printf("Failed at usleep");
+		return -1;
 	}
 
 	printf("Riiv filemodule loaded\n");
 
 	usleep(4000);
 	if (load_module_code(dipmodule_elf, dipmodule_elf_end) <= 0)
-		return 0;
+		return -1;
 
 	printf("Riiv dipmodule loaded\n");
 
@@ -193,7 +193,7 @@ int Haxx_Init()
 
 #ifdef DEBUGGER
 	if (load_module_code(megamodule_elf, megamodule_elf_end) <= 0)
-		return 0;
+		return -1;
 
 	printf("Riiv megamodule loaded\n");
 	usleep(4000);

@@ -146,11 +146,11 @@ void MainMenu(Menus::Enum menu)
 	ButtonList::InitImageData();
 
 	ResumeGui();
-	/*
-	Music = new GuiSound(bg_music_ogg, bg_music_ogg_size, SOUND_OGG);
+	
+	/*Music = new GuiSound(bg_music_ogg, bg_music_ogg_size, SOUND_OGG, );
 	Music->SetVolume(50);
-	Music->Play();
-	*/
+	Music->Play();*/ //will attempt to reimplement once loading works as it should
+	
 	while (menu != Menus::Exit) {
 		switch (menu) {
 			case Menus::Mount:
