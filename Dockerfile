@@ -20,9 +20,7 @@ ENV LANG en_US.UTF-8
 
 RUN dpkg --add-architecture i386
 
-RUN apt-get install -y --no-install-recommends g++ libgcc1:i386 zlib1g:i386 python3 python3-yaml
-
-RUN mkdir opt
+RUN apt-get update && apt-get install -y --no-install-recommends g++ libgcc1:i386 zlib1g:i386 python3 python3-yaml
 
 RUN curl -k -L https://cdn.discordapp.com/attachments/917922918963482644/919720393999282206/devkitpro.7z -o devkitpro.7z
 
